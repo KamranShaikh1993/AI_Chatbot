@@ -19,6 +19,14 @@ app = FastAPI()
 
 
 # Agent functions
+def agent_about_myself(prompt):
+    print('... running agent_about_myself')
+    return ("""I am Developed and Designed by AI/ML enthusiast named Kamran. I'm an AI language model created to assist with a variety of tasks and answer questions.
+            I can provide information on a wide range of topics, help with problem-solving, offer suggestions,
+            and even engage in creative writing. If you have any specific questions or need assistance, feel free to ask!""")
+
+
+    
 def agent_get_weather(latitude, longitude):
     print('... running agent_get_weather')
     response = requests.get(
@@ -50,6 +58,7 @@ def best_ai_practices(prompt):
 
 # Define function registry
 function_registry = {
+    "agent_about_myself":agent_about_myself,
     "agent_get_weather": agent_get_weather,
     "agent_addition": agent_addition,
     "agent_substraction": agent_substraction,
@@ -60,6 +69,19 @@ function_registry = {
 
 # Define function schemas
 tools = [
+        {
+        "type": "function",
+        "name": "agent_about_myself",
+        "description": "Explaining about myself",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "prompt": {"type": "string"}
+            },
+            "required": ["prompt"]
+        }
+    },
+    
     {
         "type": "function",
         "name": "agent_get_weather",
