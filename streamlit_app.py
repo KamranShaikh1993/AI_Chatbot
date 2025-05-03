@@ -107,7 +107,7 @@ if st.session_state.get("logged_in"):
     # Function to send user input to FastAPI backend
     def get_bot_response(user_input):
         try:
-            response = requests.post("http://localhost:8000/chat/", json={"prompt": user_input})
+            response = requests.post("http://34.233.136.94:8000/chat/", json={"prompt": user_input})
             response.raise_for_status()
             return response.text
         except requests.exceptions.RequestException as e:
